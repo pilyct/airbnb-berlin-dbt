@@ -1,0 +1,10 @@
+# Template: copy it with `cp profiles.yml.example profiles.yml`. profiles.yml is gitignored.
+# dbt checks the current directory for profiles.yml, so run dbt from the repo root.
+airbnb_berlin:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: airbnb_berlin.duckdb   # relative to this file
+      schema: analytics            # where dbt builds models; raw data lives in schema `raw`
+      threads: 4

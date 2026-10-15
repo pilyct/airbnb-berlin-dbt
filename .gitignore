@@ -1,0 +1,20 @@
+# raw data is downloaded, not committed (see README)
+data/
+
+# local warehouse
+*.duckdb
+*.duckdb.wal
+
+# dbt artifacts
+target/
+dbt_packages/
+logs/
+
+# python
+.venv/
+__pycache__/
+
+# secrets and OS noise
+.env
+profiles.yml
+.DS_Store

@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: airbnb
+    description: >
+      Inside Airbnb extracts for Berlin, loaded by scripts/load_raw.py.
+      Every source column is VARCHAR exactly as it landed in the CSV.
+      Casting to real types happens in the staging models.
+    schema: raw
+    tables:
+      - name: listings
+        description: "Detailed listings file (listings.csv.gz). Grain: TODO, you define it in milestone 1."
+      - name: reviews
+        description: "Detailed reviews file (reviews.csv.gz). Grain: TODO, you define it in milestone 1."
+      - name: neighbourhoods
+        description: "Neighbourhood to neighbourhood group mapping (neighbourhoods.csv)."
