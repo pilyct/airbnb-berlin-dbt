@@ -10,11 +10,19 @@ target/
 dbt_packages/
 logs/
 
+# dbt local files
+.user.yml
+
 # python
 .venv/
+.venv*/
 __pycache__/
 
 # secrets and OS noise
 .env
 profiles.yml
 .DS_Store
+
+# jupyter
+.ipynb_checkpoints/
+notebooks/
