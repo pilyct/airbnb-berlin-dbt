@@ -1,0 +1,65 @@
+models:
+  - name: stg_listings
+    description: Staged listings data from Airbnb in Berlin. One row per listing.
+    columns:
+      - name: listing_id
+        description: Primary key for listings
+        data_tests:
+          - unique
+          - not_null
+
+      - name: host_id
+        description: Key for the host of the listing. A host can have several listings.
+        data_tests:
+          - not_null
+
+      - name: host_listing_count
+        description: Count of listings per host_id
+        data_tests:
+          - not_null
+
+      - name: district
+        description: List of available districts in Berlin
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  [
+                    "Charlottenburg-Wilm.",
+                    "Friedrichshain-Kreuzberg",
+                    "Tempelhof - Schöneberg",
+                    "Lichtenberg",
+                    "Steglitz - Zehlendorf",
+                    "Spandau",
+                    "Mitte",
+                    "Pankow",
+                    "Treptow - Köpenick",
+                    "Reinickendorf",
+                    "Marzahn - Hellersdorf",
+                    "Neukölln",
+                  ]
+
+      - name: host_size_band
+        description: Band of the host's listing count (1, 2-4, 5-9, 10+)
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["1", "2-4", "5-9", "10+"]
+
+      - name: license_type
+        description: Type of license value, derived from the free-text license column. The raw license is not kept.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  [
+                    "missing",
+                    "exempt",
+                    "registration number",
+                    "legal entity",
+                    "private individual",
+                    "other",
+                  ]
