@@ -1,0 +1,39 @@
+models:
+  - name: mart_host_concentration
+    description: >
+      One row per district and host size band. Shows how Berlin's listings in
+      each district are spread across host sizes, as a percentage of that
+      district's listings. Built from stg_listings (scrape 2026-09-19).
+    columns:
+      - name: district
+        description: Berlin district (Bezirk) that the listings in this row belong to.
+        data_tests:
+          - not_null
+
+      - name: host_size_band
+        description: >
+          Size band of the host, based on how many listings the host has
+          (1, 2-4, 5-9, 10+). Each listing falls in the band of its host.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["1", "2-4", "5-9", "10+"]
+
+      - name: listings
+        description: Number of listings in this district that belong to this host size band.
+        data_tests:
+          - not_null
+
+      - name: district_listings
+        description: Total number of listings in this district, across all host size bands. Same value on every row of a district.
+        data_tests:
+          - not_null
+
+      - name: share_of_district
+        description: >
+          Percentage of the district's listings that fall in this host size
+          band (listings / district_listings x 100), rounded to 2 decimals.
+          The bands of one district add up to 100, within rounding.
+        data_tests:
+          - not_null
