@@ -49,7 +49,15 @@ models:
                 values: ["1", "2-4", "5-9", "10+"]
 
       - name: license_type
-        description: Type of license value, derived from the free-text license column. The raw license is not kept.
+        description: >
+          Type of license value, derived from the free-text license column. The raw license is not kept.
+          Rules are checked in this order and the first match wins: missing (null or empty),
+          exempt (starts with "exempt"), registration number (the whole value matches the Berlin
+          format NN/A/AA/NNNNNN-NN, case-insensitive), legal entity and private individual (value starts
+          with the host template text), other (everything else, e.g. placeholders and typos).
+          "registration number" only means the format is right. It is not checked against the Berlin register.
+          A value that has template text and also a registration-format number inside it is not matched
+          by the whole-value rule, so it stays in legal entity or private individual.
         data_tests:
           - not_null
           - accepted_values:
